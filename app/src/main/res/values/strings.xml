@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">BroadcastIntentsMASSEY</string>
+    <string name="battery_level">Battery level:</string>
+</resources>
