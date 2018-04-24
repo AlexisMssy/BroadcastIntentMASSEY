@@ -40,10 +40,8 @@ public class BatteryBroadcastReceiver extends BroadcastReceiver {
                     final String messageBody = messages[0].getMessageBody();
                     final String phoneNumber = messages[0].getDisplayOriginatingAddress();
 
-                    Toast toast1 = Toast.makeText(context, "Expediteur : " + phoneNumber, Toast.LENGTH_LONG);
-                    Toast toast2 = Toast.makeText(context, "Message : " + messageBody, Toast.LENGTH_LONG);
-                    toast1.show();
-                    toast2.show();
+                    Toast toast = Toast.makeText(context, "Message : " + messageBody, Toast.LENGTH_LONG);
+                    toast.show();
                 }
             }
         }

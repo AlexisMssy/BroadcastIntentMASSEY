@@ -1,11 +1,13 @@
 package org.diiage.amassey.broadcastintentsmassey;
 
+import android.Manifest;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.BatteryManager;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telephony.SmsMessage;
@@ -30,6 +32,17 @@ public class MainActivity extends AppCompatActivity {
         BatteryBroadcastReceiver br = new BatteryBroadcastReceiver(mBatteryLevelText, mBatteryLevelProgress);
         IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
         filter.addAction(Intent.ACTION_BATTERY_CHANGED);
+        filter.addAction("android.provider.Telephony.SMS_RECEIVED");
         this.registerReceiver(br, filter);
+    }
+
+    @Override
+    protected void onStart() {
+        // Permission pour les versions android au dessus de 6.0
+        ActivityCompat.requestPermissions(MainActivity.this,
+                new String[]{Manifest.permission.RECEIVE_SMS},
+                1);
+
+        super.onStart();
     }
 }
